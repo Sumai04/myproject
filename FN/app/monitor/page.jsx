@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 // import Header from './components/Header'; // Using Layout instead
@@ -176,5 +177,16 @@ const MonitorPage = () => {
     </div>
   );
 }
+=======
+import React from 'react';
+
+const MonitorPage = () => {
+    return (
+        <div className="min-h-screen bg-gray-50 p-8">
+            
+        </div>
+    );
+};
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
 
 export default MonitorPage;

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { db } from './firebase';
+<<<<<<< HEAD
 import { ref, onValue } from 'firebase/database';
+=======
+import { ref, onValue, get, child } from 'firebase/database';
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
 import './App.css';
 import patientIcon from './assets/patient_icon.svg';
 import bedIcon from './assets/bed_icon.svg';
@@ -19,6 +23,7 @@ function App() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+<<<<<<< HEAD
         // Listen to the patient node directly
         const patientsRef = ref(db, 'patient');
 
@@ -90,6 +95,60 @@ function App() {
                 setPatients([]);
                 setStats({ total: 0, pain: 0, noPain: 0, men: 0, women: 0, occupancy: 0 });
             }
+=======
+        // Listen to the Doctor node in Realtime Database
+        const doctorRef = ref(db, 'Doctor/DOC-TEST-001');
+
+        const unsubscribe = onValue(doctorRef, async (snapshot) => {
+            if (snapshot.exists()) {
+                const docData = snapshot.val();
+
+                if (docData.Patients) {
+                    const patientIds = Object.keys(docData.Patients);
+
+                    if (patientIds.length === 0) {
+                        setPatients([]);
+                        setLoading(false);
+                        return;
+                    }
+
+                    const patientsDataProms = patientIds.map(async (pid) => {
+                        try {
+                            const cleanId = pid.trim();
+                            const patientRef = child(ref(db), `patient/${cleanId}`);
+                            const pSnapshot = await get(patientRef);
+
+                            if (pSnapshot.exists()) {
+                                const pData = pSnapshot.val();
+                                return { id: cleanId, ...pData };
+                            } else {
+                                return { id: cleanId, name: 'Unknown', statusType: 'neutral', gender: 'unknown' };
+                            }
+                        } catch (err) {
+                            return { id: pid, name: 'Error', statusType: 'danger' };
+                        }
+                    });
+
+                    const patientsData = await Promise.all(patientsDataProms);
+                    setPatients(patientsData);
+
+                    // Calculate Stats
+                    const total = patientsData.length;
+                    const pain = patientsData.filter(p => p.statusType === 'danger' || p.statusLabel === 'Pain').length;
+                    const noPain = patientsData.filter(p => p.statusType === 'success' || p.statusLabel === 'No Pain').length;
+                    const men = patientsData.filter(p => p.gender?.toLowerCase() === 'male' || p.gender === 'ชาย').length;
+                    const women = patientsData.filter(p => p.gender?.toLowerCase() === 'female' || p.gender === 'หญิง').length;
+
+                    // Mocking total beds as 50 for percentage calculation (or calculate locally if bed count known)
+                    const occupancy = Math.round((total / 50) * 100);
+
+                    setStats({ total, pain, noPain, men, women, occupancy });
+                } else {
+                    setPatients([]);
+                }
+            }
+            setLoading(false);
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
         });
 
         return () => unsubscribe();

@@ -8,16 +8,24 @@ import Link from "next/link";
 const PatientDetail = () => {
   const { id } = useParams();
   const [patientData, setPatientData] = useState();
+<<<<<<< HEAD
   const [doctorData, setDoctorData] = useState(null);
+=======
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("patient-info");
 
   useEffect(() => {
     if (!id) return;
     const patientRef = ref(db, `patient/${id}`);
+<<<<<<< HEAD
     const doctorRef = ref(db, 'Doctor');
 
     const unsubscribePatient = onValue(patientRef, (snapshot) => {
+=======
+
+    const unsubscribe = onValue(patientRef, (snapshot) => {
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
       const data = snapshot.val();
       if (data) {
         setPatientData(data);
@@ -25,6 +33,7 @@ const PatientDetail = () => {
       setLoading(false);
     });
 
+<<<<<<< HEAD
     const unsubscribeDoctor = onValue(doctorRef, (snapshot) => {
         const doctors = snapshot.val();
         if (doctors) {
@@ -41,6 +50,9 @@ const PatientDetail = () => {
         unsubscribePatient();
         unsubscribeDoctor();
     };
+=======
+    return () => unsubscribe();
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
   }, [id]);
 
   if (loading) {
@@ -51,6 +63,7 @@ const PatientDetail = () => {
     );
   }
 
+<<<<<<< HEAD
   // Helper Data Extraction
   let latest = null;
   let realtime = null;
@@ -87,6 +100,8 @@ const PatientDetail = () => {
       });
   };
 
+=======
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen overflow-hidden">
@@ -105,6 +120,7 @@ const PatientDetail = () => {
 
             {/* Status Badge */}
             <div className="mb-8 text-center">
+<<<<<<< HEAD
                {latest?.painlevel === 1 ? (
                  <span className="bg-[#fee2e2] text-red-800 px-8 py-1.5 rounded-md font-semibold text-sm inline-block w-full">
                    Pain
@@ -114,6 +130,11 @@ const PatientDetail = () => {
                    Normal
                  </span>
                )}
+=======
+               <span className="bg-[#baea9e] text-[#1e3a8a] px-8 py-1.5 rounded-md font-semibold text-sm inline-block w-full">
+                 Normal
+               </span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
             </div>
 
             {/* Details Section */}
@@ -122,7 +143,11 @@ const PatientDetail = () => {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Bed no.</span>
+<<<<<<< HEAD
                   <span className="font-bold text-gray-800">{patientData?.["Bad no"] || patientData?.["Bed no"] || patientData?.Room || "-"}</span>
+=======
+                  <span className="font-bold text-gray-800">{patientData?.["Bed no"] || patientData?.Room || "-"}</span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Age</span>
@@ -130,15 +155,24 @@ const PatientDetail = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Gender</span>
+<<<<<<< HEAD
                   <span className="font-bold text-gray-800">{patientData?.Gender || patientData?.Sex || "-"}</span>
+=======
+                  <span className="font-bold text-gray-800">{patientData?.Sex || "-"}</span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Blood group</span>
                   <span className="font-bold text-gray-800">{patientData?.["Blood group"] || "-"}</span>
                 </div>
                 <div className="flex justify-between">
+<<<<<<< HEAD
                   <span className="text-gray-500">Height (cm)</span>
                   <span className="font-bold text-gray-800">{patientData?.Heigh || patientData?.Height || "-"}</span>
+=======
+                  <span className="text-gray-500">Height (m)</span>
+                  <span className="font-bold text-gray-800">{patientData?.Height || "-"}</span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Weight(kg)</span>
@@ -192,9 +226,13 @@ const PatientDetail = () => {
                  <div className="flex justify-between items-start mb-4">
                    <div>
                      <h3 className="font-bold text-gray-900">Heart rate</h3>
+<<<<<<< HEAD
                      <p className="text-xs text-gray-500">
                         {realtime?.timestamp ? formatTime(realtime.timestamp) : (latest?.timestamp ? formatTime(latest.timestamp) : "November 26, 2025 at 7:50:26 PM +07")}
                      </p>
+=======
+                     <p className="text-xs text-gray-500">November 26, 2025 at 7:50:26 PM +07</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                    </div>
                    <div className="flex items-center gap-2">
                       <div className="flex bg-gray-100 rounded p-0.5">
@@ -203,9 +241,13 @@ const PatientDetail = () => {
                         <button className="px-2 py-0.5 text-xs text-gray-500">1 W</button>
                       </div>
                       <div className="text-right">
+<<<<<<< HEAD
                          <span className="block text-sm font-bold text-blue-500">
                             {realtime?.PPG !== undefined ? Math.round(realtime.PPG) : (latest?.PPG_Hrv !== undefined ? Math.round(latest.PPG_Hrv) : "89")} bmp
                          </span>
+=======
+                         <span className="block text-sm font-bold text-blue-500">89 bmp</span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                          <span className="block text-[10px] text-gray-400">Average</span>
                       </div>
                    </div>
@@ -223,9 +265,13 @@ const PatientDetail = () => {
                  <div className="flex justify-between items-start mb-4">
                    <div>
                      <h3 className="font-bold text-gray-900">Electrodermal activity</h3>
+<<<<<<< HEAD
                      <p className="text-xs text-gray-500">
                         {realtime?.timestamp ? formatTime(realtime.timestamp) : (latest?.timestamp ? formatTime(latest.timestamp) : "November 26, 2025 at 7:59:26 PM +07")}
                      </p>
+=======
+                     <p className="text-xs text-gray-500">November 26, 2025 at 7:59:26 PM +07</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                    </div>
                    <div className="flex items-center gap-2">
                        <div className="flex bg-gray-100 rounded p-0.5">
@@ -234,9 +280,13 @@ const PatientDetail = () => {
                         <button className="px-2 py-0.5 text-xs text-gray-500">1 W</button>
                       </div>
                       <div className="text-right">
+<<<<<<< HEAD
                          <span className="block text-sm font-bold text-blue-500">
                             {realtime?.EDA !== undefined ? Number(realtime.EDA).toFixed(2) : (latest?.EDA_tonic !== undefined ? Number(latest.EDA_tonic).toFixed(2) : "1.4")} mu
                          </span>
+=======
+                         <span className="block text-sm font-bold text-blue-500">1.4 mu</span>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                          <span className="block text-[10px] text-gray-400">Average</span>
                       </div>
                    </div>
@@ -249,6 +299,7 @@ const PatientDetail = () => {
                  </div>
                </div>
 
+<<<<<<< HEAD
                  {/* Treatment History */}
                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                  <h3 className="font-bold text-gray-900 mb-4">Treatment History</h3>
@@ -286,6 +337,36 @@ const PatientDetail = () => {
                             </div>
                         </>
                     )}
+=======
+                {/* Treatment History */}
+               <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                 <h3 className="font-bold text-gray-900 mb-4">Treatment History</h3>
+                 <div className="space-y-4">
+                    {/* Item 1 */}
+                    <div className="flex justify-between text-sm items-start border-b border-gray-50 pb-3">
+                       <div className="w-1/5 font-bold text-gray-800">Nov 25, 8:00 AM</div>
+                       <div className="w-3/5 text-gray-700 px-2 font-medium">Initiated emergency medications (MONA) and prioritized for intervention.</div>
+                       <div className="w-1/5 text-right text-gray-900 font-bold">ED Physician and Nurses</div>
+                    </div>
+                    {/* Item 2 */}
+                    <div className="flex justify-between text-sm items-start border-b border-gray-50 pb-3">
+                       <div className="w-1/5 font-bold text-gray-800">Nov 25, 10:30 AM</div>
+                       <div className="w-3/5 text-gray-700 px-2 font-medium">Performed Percutaneous Coronary Intervention (PCI) with stent placement to open the vessel.</div>
+                       <div className="w-1/5 text-right text-gray-900 font-bold">Interventional Cardiologist</div>
+                    </div>
+                     {/* Item 3 */}
+                    <div className="flex justify-between text-sm items-start border-b border-gray-50 pb-3">
+                       <div className="w-1/5 font-bold text-gray-800">Nov 25 - Nov 26 (Ongoing)</div>
+                       <div className="w-3/5 text-gray-700 px-2 font-medium">Continuous Anticoagulation (Heparin Drip) and management of BP/heart rate.</div>
+                       <div className="w-1/5 text-right text-gray-900 font-bold">Intensivist/ Critical Care Physician</div>
+                    </div>
+                     {/* Item 4 */}
+                    <div className="flex justify-between text-sm items-start">
+                       <div className="w-1/5 font-bold text-gray-800">Nov 26, 7:50 PM</div>
+                       <div className="w-3/5 text-gray-700 px-2 font-medium">Reassessment (Found HR 89, Moderate Pain) and medication adjustment.</div>
+                       <div className="w-1/5 text-right text-gray-900 font-bold">CCU Physician and CUU Nurses</div>
+                    </div>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                  </div>
                </div>
 
@@ -301,14 +382,24 @@ const PatientDetail = () => {
                            <img src="https://i.pravatar.cc/150?img=32" alt="Doctor" className="w-full h-full object-cover" />
                        </div>
                        <div>
+<<<<<<< HEAD
                           <h3 className="font-bold text-[#1e3a8a] text-lg">{doctorData?.name || patientData?.Doctor_name || "Jane Dhoe"}</h3>
                           <p className="text-xs text-gray-500 font-bold">{doctorData?.specialist || "Cardiologist"}</p>
                           <p className="text-xs text-blue-500">{patientData?.name ? `${patientData.name.split(' ')[0]}'s Doctor` : "Patient's Doctor"}</p>
+=======
+                          <h3 className="font-bold text-[#1e3a8a] text-lg">Dr. {patientData?.Doctor_name || "Jane Doe"}</h3>
+                          <p className="text-xs text-gray-500 font-bold">Cardiologist</p>
+                          <p className="text-xs text-blue-500">Merisa's Doctor</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                        </div>
                     </div>
                     <div className="text-xs text-blue-500 mb-2 font-bold cursor-pointer">Details</div>
                     <div className="text-xs space-y-2 text-gray-800">
+<<<<<<< HEAD
                        <p><span className="font-bold">Time of Assessment : </span> {latest?.timestamp ? formatTime(latest.timestamp) : "November 26, 2025, at 7:50 PM"}</p>
+=======
+                       <p><span className="font-bold">Time of Assessment : </span> November 26, 2025, at 7:50 PM</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                        <p><span className="font-bold">Chief Complaint : </span> No active Chest Pain (NACP) reported.</p>
                        <p><span className="font-bold">Note : </span> Heart sounds regular. No new murmurs. Clear breath sounds bilaterally</p>
                     </div>
@@ -318,6 +409,7 @@ const PatientDetail = () => {
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                    <h3 className="font-bold text-gray-900 mb-6">Pain Prediction History</h3>
                    <div className="relative border-l-2 border-gray-100 ml-3 space-y-8">
+<<<<<<< HEAD
                       {/* Dynamic History List */}
                       {(() => {
                           let historyList = [];
@@ -380,14 +472,45 @@ const PatientDetail = () => {
                          <div>
                             <h4 className="font-bold text-gray-900 text-sm">Moderate Pain</h4>
                             <p className="text-[10px] text-gray-500">November 25, 2025 at 7:50:26 PM </p>
+=======
+                      {/* Event 1 */}
+                      <div className="relative pl-6">
+                         <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#fef3c7] border-2 border-white"></div>
+                         <div>
+                            <h4 className="font-bold text-gray-900 text-sm">Moderate Pain</h4>
+                            <p className="text-[10px] text-gray-500">November 26, 2025 at 7:50:26 PM +07</p>
+                         </div>
+                      </div>
+                       {/* Event 2 */}
+                      <div className="relative pl-6">
+                         <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#fae8ff] border-2 border-white"></div>
+                         <div>
+                            <h4 className="font-bold text-gray-900 text-sm">Mild Pain</h4>
+                            <p className="text-[10px] text-gray-500">November 26, 2025 at 6:00:00 AM +07</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                          </div>
                       </div>
                        {/* Event 3 */}
                       <div className="relative pl-6">
+<<<<<<< HEAD
                          <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#fee2e2] border-2 border-white"></div>
                          <div>
                             <h4 className="font-bold text-gray-900 text-sm">Severe Pain</h4>
                             <p className="text-[10px] text-gray-500">November 25, 2025 at 8:00:00 AM </p>
+=======
+                         <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#fef3c7] border-2 border-white"></div>
+                         <div>
+                            <h4 className="font-bold text-gray-900 text-sm">Moderate Pain</h4>
+                            <p className="text-[10px] text-gray-500">November 25, 2025 at 7:50:26 PM +07</p>
+                         </div>
+                      </div>
+                       {/* Event 4 */}
+                      <div className="relative pl-6">
+                         <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#fee2e2] border-2 border-white"></div>
+                         <div>
+                            <h4 className="font-bold text-gray-900 text-sm">Severe Pain</h4>
+                            <p className="text-[10px] text-gray-500">November 25, 2025 at 8:00:00 AM +07</p>
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
                          </div>
                       </div>
                    </div>

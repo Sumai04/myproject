@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 .patient-card {
     display: flex;
     align-items: center;
@@ -721,3 +722,5 @@
     /* Placeholder size */
     margin-top: auto;
 }
+=======
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b

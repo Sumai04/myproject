@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 // import Header from './components/Header';
 import { db } from '../firebase';
@@ -191,5 +192,16 @@ const Dashboard = () => {
         </div>
     );
 }
+=======
+import React from 'react';
+
+const Dashboard = () => {
+    return (
+        <div className="min-h-screen bg-gray-50 p-8">
+            
+        </div>
+    );
+};
+>>>>>>> d4bcdeabe3a332e75f8303f01af3153de1ed490b
 
 export default Dashboard;
